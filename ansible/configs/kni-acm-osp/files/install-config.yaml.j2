@@ -1,85 +1,39 @@
 apiVersion: v1
 baseDomain: {{ osp_cluster_dns_zone }}
 metadata:
-  name: {{ guid }}
+  name: {{ acm_guid }}
 networking:
   networkType: {{ kni_ocp_networking }}
   machineCIDR: 10.20.0.0/24
 compute:
 - name: worker
-  replicas: 2
+  replicas: 0
 controlPlane:
   name: master
-  replicas: 3
+  replicas: 1
   platform:
     baremetal: {}
 platform:
   baremetal:
     provisioningNetworkCIDR: 172.22.0.0/24
     provisioningNetworkInterface: ens3
-    apiVIP: 10.20.0.110
-    ingressVIP: 10.20.0.112
-    dnsVIP: 10.20.0.111
+    apiVIP: 10.20.0.115
+    ingressVIP: 10.20.0.113
+    dnsVIP: 10.20.0.114
 {% if kni_ocp_offline %}
     bootstrapOSImage: http://10.20.0.2/images/RHCOS_QEMU_IMAGE
     clusterOSImage: http://10.20.0.2/images/RHCOS_OPENSTACK_IMAGE
 {% endif %}
     hosts:
-      - name: master-0
+      - name: master-3
         role: master
         bmc:
-          address: ipmi://10.20.0.3:master-0BMC
+          address: ipmi://10.20.0.3:master-3BMC
           username: admin
           password: redhat
-        bootMACAddress: de:ad:be:ef:00:40
-{% if kni_ocp_version.split('.') > '4.6.0'.split('.') %}
+        bootMACAddress: de:ad:be:ef:00:43
         bootMode: legacy
-{% endif %}
-        hardwareProfile: default
-      - name: master-1
-        role: master
-        bmc:
-          address: ipmi://10.20.0.3:master-1BMC
-          username: admin
-          password: redhat
-        bootMACAddress: de:ad:be:ef:00:41
-{% if kni_ocp_version.split('.') > '4.6.0'.split('.') %}
-        bootMode: legacy
-{% endif %}
-        hardwareProfile: default
-      - name: master-2
-        role: master
-        bmc:
-          address: ipmi://10.20.0.3:master-2BMC
-          username: admin
-          password: redhat
-        bootMACAddress: de:ad:be:ef:00:42
-{% if kni_ocp_version.split('.') > '4.6.0'.split('.') %}
-        bootMode: legacy
-{% endif %}
-        hardwareProfile: default
-      - name: worker-0
-        role: worker
-        bmc:
-          address: ipmi://10.20.0.3:worker-0BMC
-          username: admin
-          password: redhat
-        bootMACAddress: de:ad:be:ef:00:50
-{% if kni_ocp_version.split('.') > '4.6.0'.split('.') %}
-        bootMode: legacy
-{% endif %}
-        hardwareProfile: unknown
-      - name: worker-1
-        role: worker
-        bmc:
-          address: ipmi://10.20.0.3:worker-1BMC
-          username: admin
-          password: redhat
-        bootMACAddress: de:ad:be:ef:00:51
-{% if kni_ocp_version.split('.') > '4.6.0'.split('.') %}
-        bootMode: legacy
-{% endif %}
-        hardwareProfile: unknown
+        hardwareProfile: openstack
 
 sshKey: 'SSH_KEY'
 {% if kni_ocp_offline %}

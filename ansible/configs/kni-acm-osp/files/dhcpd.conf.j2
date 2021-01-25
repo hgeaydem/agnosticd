@@ -31,6 +31,12 @@ host master-2 {
    fixed-address 10.20.0.102;
 }
 
+host master-3 {
+   option host-name "master-3";
+   hardware ethernet ba:dc:0f:fe:e0:43;
+   fixed-address 10.20.0.103;
+}
+
 host worker-0 {
    option host-name "worker-0";
    hardware ethernet ba:dc:0f:fe:e0:50;

@@ -1,4 +1,4 @@
-# KNI ACM Baremetal Lab
+# KNI Baremetal Lab
 
 ## Overview
 

@@ -13,6 +13,9 @@ $TTL 1D
 110		IN	PTR	ns1.{{guid}}.{{ osp_cluster_dns_zone }}.
 111		IN	PTR	api.{{guid}}.{{ osp_cluster_dns_zone }}.
 
+114   IN  PTR ns1.{{acm_guid}}.{{ osp_cluster_dns_zone}}.
+115   IN  PTR api.{{acm_guid}}.{{ osp_cluster_dns_zone}}.
+
 100		IN	PTR	master-0.{{guid}}.{{ osp_cluster_dns_zone }}.
 101		IN	PTR	master-1.{{guid}}.{{ osp_cluster_dns_zone }}.
 102		IN	PTR	master-2.{{guid}}.{{ osp_cluster_dns_zone }}.

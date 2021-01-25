@@ -15,9 +15,14 @@ ns1.{{guid}}		IN	A	10.20.0.111
 api.{{guid}}		IN	A	10.20.0.110
 api-int.{{guid}}		IN	A	10.20.0.110
 
+*.apps.{{acm_guid}} IN  A 10.20.0.113
+ns1.{{acm_guid}}  IN  A 10.20.0.114
+api.{{acm_guid}}  IN  A 10.20.0.115
+
 master-0.{{guid}}	IN	A	10.20.0.100
 master-1.{{guid}}	IN	A	10.20.0.101
 master-2.{{guid}}	IN	A	10.20.0.102
+master-3.{{acm-guid}} IN  A 10.20.0.103
 worker-0.{{guid}}	IN	A	10.20.0.200
 worker-1.{{guid}}	IN	A	10.20.0.201
 worker-2.{{guid}}	IN	A	10.20.0.202

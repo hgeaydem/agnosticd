@@ -149,6 +149,24 @@
         mode: 0777
         force: yes
 
+    - name: sending the single master injector script
+      template:
+        src: ./files/ocp-api-inject.sh.j2
+        dest: /home/{{ student_name }}/scripts/ocp-api-inject.sh
+        owner: "{{ student_name }}"
+        group: "users"
+        mode: 0777
+        force: yes
+
+    - name: sending ACM Assets config
+      template:
+        src: ./files/acm-baremetal-assets.yaml.j2
+        dest: /home/{{ student_name }}/acm-baremetal-assets.yaml
+        owner: "{{ student_name }}"
+        group: "users"
+        mode: 0777
+        force: yes
+
     - name: Resolving install-config
       template:
         src: "./files/install-config.yaml.j2"

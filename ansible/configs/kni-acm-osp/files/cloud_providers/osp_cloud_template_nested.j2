@@ -94,6 +94,14 @@ parameters:
     type: string
     description: VIP for api ocp address
 
+  acmhub_api_vip:
+    type: string
+    description: VIP for *.apps ocp address
+
+  acmhub_app_vip:
+    type: string
+    description: VIP for api ocp address
+
   port_security:
     type: boolean
     description: port security enablement
@@ -140,6 +148,8 @@ resources:
         - create_secure_port
         - - ip_address: { get_param: ocp_api_vip }
           - ip_address: { get_param: ocp_app_vip }
+          - ip_address: { get_param: acmhub_api_vip }
+          - ip_address: { get_param: acmhub_app_vip }
         - []
       security_groups:
         if:
