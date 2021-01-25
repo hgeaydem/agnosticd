@@ -280,7 +280,6 @@ resources:
       port_id: { get_resource: acmhub_apps_vip_port }
     depends_on:
       - appnet-router_private_interface
-
 {% endif %}
 
 outputs:
@@ -297,4 +296,12 @@ outputs:
   ocp_ingress_fip:
     description: The floating IP of the OpenShift ingress
     value: { get_attr: [ ocp_ingress_fip, floating_ip_address ] }
+
+  acmhub_api_fip:
+    description: The floating IP of the ACM Hub OpenShift API
+    value: { get_attr: [ acmhub_api_fip, floating_ip_address ] }
+
+  acmhub_ingress_fip:
+    description: The floating IP of the ACM Hub OpenShift ingress
+    value: { get_attr: [ acmhub_ingress_fip, floating_ip_address ] }
 {% endif %}
