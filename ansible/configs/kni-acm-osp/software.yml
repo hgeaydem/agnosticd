@@ -161,7 +161,7 @@
     - name: sending ACM Assets config
       template:
         src: ./files/acm-baremetal-assets.yaml.j2
-        dest: /home/{{ student_name }}/acm-baremetal-assets.yaml
+        dest: /home/{{ student_name }}/scripts/acm-baremetal-assets.yaml
         owner: "{{ student_name }}"
         group: "users"
         mode: 0777
